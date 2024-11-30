@@ -1,0 +1,8 @@
+var username = msg.payload.username;
+var password = msg.payload.password;
+
+// Check the credentials against the database
+msg.topic = "SELECT * FROM user WHERE username = ? AND password = ?";
+msg.payload = [username, password];
+
+return msg;

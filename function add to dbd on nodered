@@ -1,0 +1,31 @@
+var dt = new Date();
+var yy = dt.getFullYear();
+var mm = (dt.getMonth() + 1);
+var dd = dt.getDate();
+var hh = dt.getHours();
+var mins = dt.getMinutes();
+var ss = dt.getSeconds();
+
+var m = (mm < 10) ? "0" + mm : mm;
+var d = dd < 10 ? "0" + dd : dd;
+var h = hh < 10 ? "0" + hh : hh;
+var mi = mins < 10 ? "0" + mins : mins;
+var s = ss < 10 ? "0" + ss : ss;
+
+var dates = yy + "-" + m + "-" + d + " " + h + ":" + mi + ":" + s;
+
+var newMsg = {
+    "payload": {
+        "userID": msg.payload.userID,
+        "username": msg.payload.username,
+        "password": msg.payload.password,
+        "birthday": msg.payload.birthday,
+        "telephone": msg.payload.telephone,
+        "email": msg.payload.email,
+        "create_date": dates,
+        "create_by": "Administrator"
+    },
+    "topic": `INSERT INTO user(userID, username, password, birthday, telephone, email, create_date, create_by) VALUES ('${msg.payload.userID}', '${msg.payload.username}', '${msg.payload.password}', '${msg.payload.birthday}', '${msg.payload.telephone}', '${msg.payload.email}', '${dates}', 'Administrator')`
+};
+
+return newMsg;
